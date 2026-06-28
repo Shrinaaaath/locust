@@ -8,11 +8,11 @@ pipeline {
                 checkout scm
             }
         }
-
+	
         stage('Python Version') {
             steps {
                 sh 'python3 --version'
-                sh 'pip3 --version'
+                sh 'python3 -m pip --version'
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
                 sh '''
                 python3 -m venv venv
                 . venv/bin/activate
-                pip install --upgrade pip
+                python -m pip install --upgrade pip
                 '''
             }
         }
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh '''
                 . venv/bin/activate
-                pip install .
+                python -m pip install .
                 '''
             }
         }
